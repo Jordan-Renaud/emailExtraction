@@ -1,6 +1,7 @@
 const fs = require("fs");
 const file = fs.readFileSync("test.txt", "utf-8");
 
+// Exercise 1
 const linesInFile = file.toLowerCase().split("\r\n");
 const wordsInFile = [];
 
@@ -17,8 +18,26 @@ console.log(
   `Number of softwire email addresses found without Regex: ${softwireEmailAddresses.length}`
 );
 
+//Exercise 2
 const regexForSoftwireOnly = /@softwire\.com\s/g;
 const foundMatches = file.match(regexForSoftwireOnly);
 console.log(
   `Number of softwire email addresses found Regex: ${foundMatches.length}`
 );
+
+//Exercise 3
+const regexForAllEmails = /@\w+(\.\w+){1,2}/g;
+const emailDomains = file.match(regexForAllEmails);
+const emailCountsUnsorted = {};
+
+emailDomains.forEach((domainName) => {
+  if (emailCountsUnsorted.hasOwnProperty(domainName)) {
+    emailCountsUnsorted[domainName]++;
+  } else {
+    emailCountsUnsorted[domainName] = 1;
+  }
+});
+
+for (const [key, value] of Object.entries(emailCountsUnsorted)) {
+  console.log(`${key}: ${value}`);
+}
