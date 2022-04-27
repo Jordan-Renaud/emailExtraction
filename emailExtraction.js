@@ -26,10 +26,14 @@ console.log(
 );
 
 //Exercise 3
-const regexForAllEmails = /@\w+(\.\w+){1,2}/g;
+const regexForAllEmails = /\b@(\S+)\b/g;
 const emailDomains = file.match(regexForAllEmails);
-const emailCountsUnsorted = {};
 
+console.log(
+  `Number of total email addresses found Regex: ${emailDomains.length}`
+);
+
+const emailCountsUnsorted = {};
 emailDomains.forEach((domainName) => {
   if (emailCountsUnsorted.hasOwnProperty(domainName)) {
     emailCountsUnsorted[domainName]++;
@@ -38,6 +42,6 @@ emailDomains.forEach((domainName) => {
   }
 });
 
-for (const [key, value] of Object.entries(emailCountsUnsorted)) {
-  console.log(`${key}: ${value}`);
-}
+// for (const [key, value] of Object.entries(emailCountsUnsorted)) {
+//   console.log(`${key}: ${value}`);
+// }
