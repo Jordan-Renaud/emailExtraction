@@ -1,9 +1,9 @@
 const fs = require("fs");
 const file = fs.readFileSync("test.txt", "utf-8");
 
-const wordsInFile = file.split(" ");
+const wordsInFile = file.toLowerCase().split(" ");
 const softwireEmailAddresses = wordsInFile.filter(
-  (word) => word.substring(word.length - 13) === "@softwire.com"
+  (word) => word.includes("@softwire.com") && !word.endsWith(".comet.net")
 );
 
 console.log(
